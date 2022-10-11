@@ -1,18 +1,48 @@
 import React, { useEffect, useState } from "react";
 import useSWR from "swr";
-import { fetcher } from "../../config";
+import ReactPaginate from "react-paginate";
+import { apiMovie, fetcher } from "apiconfig/configs";
+import useDebounce from "hooks/useDebounce";
+import { MovieCard } from "components/movie/MovieCard";
 
-export const MoviePage = () => {
+const itemsPerPage = 20;
+const MoviePage = () => {
+  const [pageCount, setPageCount] = useState(0);
+  const [itemOffset, setItemOffset] = useState(0);
+  const [nextPage, setNextPage] = useState(1);
   const [movies, setMovies] = useState([]);
-  const { data, error } = useSWR(
-    `https://api.themoviedb.org/3/movie/popular?api_key=22de5f1bf9b3ee77f0924b94f1f3cd3b`,
-    fetcher
-  );
+  const [search, setSearch] = useState("");
+  const [url, setUrl] = useState(apiMovie.getMovieList("popular", nextPage));
 
-  // const movies =data ?.results || []
+  const searchDebounce = useDebounce(search, 200);
+
+  const { data, error } = useSWR(url, fetcher);
+  const loading = !data && !error;
+
+  useEffect(() => {
+    if (!data || !data.total_results) return;
+    setPageCount(Math.ceil(data.total_results / itemsPerPage));
+  }, [data, itemOffset]);
+
   useEffect(() => {
     if (data && data.results) setMovies(data.results);
-  }, [data]);
+    if (searchDebounce) {
+      setUrl(apiMovie.getMovieSearch(searchDebounce, nextPage));
+    } else {
+      setUrl(apiMovie.getMovieList("popular", nextPage));
+    }
+  }, [data, searchDebounce, nextPage]);
+
+  const handleSearchChange = (e) => {
+    setSearch(e.target.value);
+  };
+
+  const handlePageClick = (event) => {
+    const newOffset = (event.selected * itemsPerPage) % data.total_results;
+
+    setItemOffset(newOffset);
+    setNextPage(event.selected + 1);
+  };
   return (
     <>
       <div className="pb-10 page-container">
@@ -22,6 +52,7 @@ export const MoviePage = () => {
               type="text"
               className="w-full p-4 text-white bg-slate-800 outline-none"
               placeholder="Type here to search..."
+              onChange={handleSearchChange}
             />
           </div>
           <button className="p-4 bg-primary text-white rounded-lg">
@@ -41,33 +72,31 @@ export const MoviePage = () => {
             </svg>
           </button>
         </div>
+        {loading && (
+          <div className="w-16 h-16 mx-auto border-4 border-dashed rounded-full animate-spin dark:border-primary"></div>
+        )}
         <div className="grid grid-cols-4 gap-10">
-          {movies.length > 0 &&
+          {!loading &&
+            movies.length > 0 &&
             movies.map((item) => {
-              return (
-                <div className="movie-card flex flex-col rounded-lg p-3 bg-slate-800 text-white h-full select-none">
-                  <img
-                    src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
-                    alt=""
-                    className="w-full h-[250px] object-cover rounded-lg mb-5"
-                  />
-                  <div className="flex flex-col flex-1">
-                    <h3 className="text-white text-xl font-bold">
-                      {item.title}
-                    </h3>
-                    <div className="flex items-center justify-between text-sm opacity-50 mb-10">
-                      <span>{new Date(item.release_date).getFullYear()}</span>
-                      <span>{item.vote_average}</span>
-                    </div>
-                    <button className="capitalize py-3 px-6 rounded-lg bg-primary text-white font-medium w-full mt-auto">
-                      Watch now
-                    </button>
-                  </div>
-                </div>
-              );
+              return <MovieCard key={item.id} item={item} />;
             })}
+        </div>
+        <div className="mt-10">
+          <ReactPaginate
+            breakLabel="..."
+            nextLabel="next >"
+            onPageChange={handlePageClick}
+            pageRangeDisplayed={5}
+            pageCount={pageCount}
+            previousLabel="< previous"
+            renderOnZeroPageCount={null}
+            className="panigation"
+          />
         </div>
       </div>
     </>
   );
 };
+
+export default MoviePage;

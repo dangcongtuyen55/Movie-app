@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import banner from "../../assets/banner.jpg";
+import { apiMovie } from "apiconfig/configs";
+import { Button } from "components/button/Button";
 
 export const MovieCard = ({ item }) => {
   const { id, title, vote_average, poster_path, release_date } = item;
@@ -8,7 +9,7 @@ export const MovieCard = ({ item }) => {
   return (
     <div className="movie-card flex flex-col rounded-lg p-3 bg-slate-800 text-white h-full select-none">
       <img
-        src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
+        src={apiMovie.imgW500Url(poster_path)}
         alt=""
         className="w-full h-[250px] object-cover rounded-lg mb-5"
       />
@@ -18,12 +19,10 @@ export const MovieCard = ({ item }) => {
           <span>{new Date(release_date).getFullYear()}</span>
           <span>{vote_average}</span>
         </div>
-        <button
-          onClick={() => navigate(`/movie/${id}`)}
-          className="capitalize py-3 px-6 rounded-lg bg-primary text-white font-medium w-full mt-auto"
-        >
+
+        <Button onClick={() => navigate(`/movie/${id}`)} bgColor="primary">
           Watch now
-        </button>
+        </Button>
       </div>
     </div>
   );

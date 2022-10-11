@@ -10,6 +10,9 @@ module.exports = {
         primary: "#FB00C7",
         secondary: "#744BCE",
       },
+      aspectRatio: {
+        "10/5": "10 / 5",
+      },
     },
   },
   plugins: [],

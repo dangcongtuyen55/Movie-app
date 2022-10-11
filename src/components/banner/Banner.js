@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/scss";
 import useSWR from "swr";
-import banner from "../../assets/banner.jpg";
-import { fetcher } from "../../config";
+import { fetcher } from "apiconfig/configs";
+import { Button } from "components/button/Button";
 
 export const Banner = () => {
   const [movies, setMovies] = useState([]);
@@ -31,8 +32,8 @@ export const Banner = () => {
 };
 
 function ItemBanner({ item }) {
-  const { title, poster_path } = item;
-
+  const { id, title, poster_path } = item;
+  const navigate = useNavigate();
   return (
     <div className="w-full h-full rounded-lg relative">
       <div className="overlay absolute inset-0 bg-gradient-to-t from-[rgba(0,0,0,0.5)] to-[rgba(0,0,0,0.5)] rounded-lg"></div>
@@ -55,9 +56,9 @@ function ItemBanner({ item }) {
             Action
           </span>
         </div>
-        <button className="py-3 px-6 rounded-lg bg-primary text-white font-medium">
+        <Button onClick={() => navigate(`/movie/${id}`)} bgColor="primary">
           Watch now
-        </button>
+        </Button>
       </div>
     </div>
   );

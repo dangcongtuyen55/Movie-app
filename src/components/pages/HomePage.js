@@ -1,7 +1,7 @@
+import { MovieList } from "components/movie/MovieList";
 import React from "react";
-import { MovieList } from "../movie/MovieList";
 
-export const HomePage = () => {
+const HomePage = () => {
   return (
     <>
       <section className="movie-layer page-container pb-20">
@@ -26,3 +26,5 @@ export const HomePage = () => {
     </>
   );
 };
+
+export default HomePage;
