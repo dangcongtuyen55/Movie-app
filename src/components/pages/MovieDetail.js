@@ -13,16 +13,16 @@ const MovieDetail = () => {
   const { title, backdrop_path, poster_path, genres, overview } = data;
   return (
     <div className="pb-10">
-      <div className="w-full h-[500px] relative hidden xsm:block   ">
-        <div className="absolute inset-0 bg-black bg-opacity-70 hidden xsm:block  "></div>
+      <div className="w-full h-[500px] relative hidden sm:block   ">
+        <div className="absolute inset-0 bg-black bg-opacity-70 hidden sm:block  "></div>
         <div
-          className="  w-full h-full  bg-cover bg-no-repeat hidden xsm:block   "
+          className="  w-full h-full  bg-cover bg-no-repeat hidden sm:block   "
           style={{
             backgroundImage: `url(${apiMovie.imgOriginalUrl(backdrop_path)})`,
           }}
         ></div>
       </div>
-      <div className="w-full h-[400px] max-w-[800px] mx-auto  relative z-10  xsm:-mt-[200px] ">
+      <div className="w-full h-[400px] max-w-[800px] mx-auto  relative z-10  sm:-mt-[200px] ">
         <img
           // src={`https://image.tmdb.org/t/p/original/${poster_path}`}
           src={apiMovie.imgOriginalUrl(poster_path)}
@@ -30,11 +30,11 @@ const MovieDetail = () => {
           className="w-full h-full bg-cover rounded-xl"
         />
       </div>
-      <h1 className="text-center xsm:text-3xl text-sm font-bold text-white mb-10 mt-5">
+      <h1 className="text-center sm:text-3xl text-sm font-bold text-white mb-10 mt-5">
         {title}
       </h1>
       {genres.length > 0 && (
-        <div className="xsm:flex xsm:gap-x-5 items-center justify-center grid grid-cols-2  gap-y-5 gap-x-5 mb-10">
+        <div className="sm:flex sm:gap-x-5 items-center justify-center grid grid-cols-2  gap-y-5 gap-x-5 mb-10">
           {genres.map((item) => {
             return (
               <span className="py-2 px-4 border border-primary rounded-lg text-primary">
@@ -104,7 +104,7 @@ function MovieTrailers() {
             </h3>
 
             <div
-              className="w-full aspect-w-16 aspect-h-9 xsm:aspect-[10/5] "
+              className="w-full aspect-w-16 aspect-h-9 sm:aspect-[10/5] "
               key={item.id}
             >
               <iframe

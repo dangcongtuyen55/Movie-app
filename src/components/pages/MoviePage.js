@@ -4,6 +4,7 @@ import ReactPaginate from "react-paginate";
 import { apiMovie, fetcher } from "apiconfig/configs";
 import useDebounce from "hooks/useDebounce";
 import { MovieCard } from "components/movie/MovieCard";
+import { Pagination } from "@mui/material";
 
 const itemsPerPage = 20;
 const MoviePage = () => {
@@ -73,9 +74,9 @@ const MoviePage = () => {
           </button>
         </div>
         {loading && (
-          <div className="w-16 h-16 mx-auto border-4 border-dashed rounded-full animate-spin dark:border-primary"></div>
+          <div className=" w-16 h-16 mx-auto border-4 border-dashed rounded-full animate-spin dark:border-primary"></div>
         )}
-        <div className="grid grid-cols-2 gap-10 xsm:grid-cols-4 xsm:gap-10">
+        <div className="grid grid-cols-2 gap-10 sm:grid-cols-4 sm:gap-10">
           {!loading &&
             movies.length > 0 &&
             movies.map((item) => {
@@ -85,14 +86,19 @@ const MoviePage = () => {
         <div className="mt-10">
           <ReactPaginate
             breakLabel="..."
-            nextLabel="next >"
+            nextLabel=">>"
             onPageChange={handlePageClick}
-            pageRangeDisplayed={5}
+            // pageRangeDisplayed={2}
             pageCount={pageCount}
-            previousLabel="< previous"
+            previousLabel="<<"
             renderOnZeroPageCount={null}
             className="panigation"
           />
+          {/* <Pagination
+            count={pageCount}
+            onChange={handlePageClick}
+            color="primary"
+          /> */}
         </div>
       </div>
     </>
