@@ -13,16 +13,16 @@ const MovieDetail = () => {
   const { title, backdrop_path, poster_path, genres, overview } = data;
   return (
     <div className="pb-10">
-      <div className="w-full h-[500px] relative ">
-        <div className="absolute inset-0 bg-black bg-opacity-70"></div>
+      <div className="w-full h-[500px] relative hidden xsm:block   ">
+        <div className="absolute inset-0 bg-black bg-opacity-70 hidden xsm:block  "></div>
         <div
-          className="w-full h-full bg-cover bg-no-repeat"
+          className="  w-full h-full  bg-cover bg-no-repeat hidden xsm:block   "
           style={{
             backgroundImage: `url(${apiMovie.imgOriginalUrl(backdrop_path)})`,
           }}
         ></div>
       </div>
-      <div className="w-full h-[400px] max-w-[800px] mx-auto -mt-[200px] relative z-10 pb-10">
+      <div className="w-full h-[400px] max-w-[800px] mx-auto  relative z-10  xsm:-mt-[200px] ">
         <img
           // src={`https://image.tmdb.org/t/p/original/${poster_path}`}
           src={apiMovie.imgOriginalUrl(poster_path)}
@@ -30,11 +30,11 @@ const MovieDetail = () => {
           className="w-full h-full bg-cover rounded-xl"
         />
       </div>
-      <h1 className="text-center text-3xl font-bold text-white mb-10">
+      <h1 className="text-center text-3xl font-bold text-white mb-10 mt-5">
         {title}
       </h1>
       {genres.length > 0 && (
-        <div className="flex items-center justify-center gap-x-5 mb-10">
+        <div className="xsm:flex xsm:gap-x-5 items-center justify-center grid grid-cols-2  gap-y-5 gap-x-5 mb-10">
           {genres.map((item) => {
             return (
               <span className="py-2 px-4 border border-primary rounded-lg text-primary">
@@ -63,18 +63,18 @@ function MovieCredits() {
   if (!cast || cast.length <= 0) return null;
 
   return (
-    <div className="py-4">
+    <div className="py-4 ">
       <h2 className="text-center text-2xl mb-10">Casts</h2>
-      <div className="grid grid-cols-4 gap-5">
+      <div className="grid lg:grid-cols-4  gap-5 sm:grid-cols-2">
         {cast.slice(0, 4).map((item) => {
           return (
             <div className="cast-item" key={item.id}>
               <img
                 src={apiMovie.imgOriginalUrl(item.profile_path)}
                 alt=""
-                className="w-full h-[350px] object-cover rounded-lg mb-3"
+                className=" w-full h-[350px]   object-cover rounded-lg mb-3"
               />
-              <h2 className="text-xl font-medium">{item.name}</h2>
+              <h2 className="text-xs sm:text-xl font-medium ">{item.name}</h2>
             </div>
           );
         })}
@@ -103,7 +103,10 @@ function MovieTrailers() {
               {item.name}
             </h3>
 
-            <div className="w-full aspect-[10/5] " key={item.id}>
+            <div
+              className="w-full aspect-w-16 aspect-h-9 xsm:aspect-[10/5] "
+              key={item.id}
+            >
               <iframe
                 width="937"
                 height="527"

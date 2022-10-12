@@ -14,8 +14,8 @@ export const MovieList = ({ type = "now_playing" }) => {
     if (data && data.results) setMovies(data.results);
   }, [data]);
   return (
-    <div className="movie-list">
-      <Swiper grabCursor="true" spaceBetween={20} slidesPerView="auto">
+    <div className="movie-list ">
+      <Swiper grabCursor="true" spaceBetween={35} slidesPerView="auto">
         {movies.length > 0 &&
           movies.map((item) => {
             return (

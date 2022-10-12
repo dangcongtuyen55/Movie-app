@@ -24,7 +24,7 @@ export const Button = ({
     <>
       <button
         onClick={onClick}
-        className={`capitalize py-3 px-6 rounded-lg  text-white font-medium ${
+        className={`capitalize py-3 px-6 rounded-lg  text-white font-medium xsm:text-xl ${
           wFull ? "w-full" : ""
         } mt-auto ${bgClassName} ${className}`}
       >

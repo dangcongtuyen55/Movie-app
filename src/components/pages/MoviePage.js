@@ -75,7 +75,7 @@ const MoviePage = () => {
         {loading && (
           <div className="w-16 h-16 mx-auto border-4 border-dashed rounded-full animate-spin dark:border-primary"></div>
         )}
-        <div className="grid grid-cols-4 gap-10">
+        <div className="grid grid-cols-2 gap-10 xsm:grid-cols-4 xsm:gap-10">
           {!loading &&
             movies.length > 0 &&
             movies.map((item) => {

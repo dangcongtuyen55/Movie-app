@@ -4,7 +4,7 @@ import React from "react";
 const HomePage = () => {
   return (
     <>
-      <section className="movie-layer page-container pb-20">
+      <section className="movie-layer page-container pb-20 ">
         <h2 className="capitalize text-white mb-10 text-3xl font-bold ">
           Now playing
         </h2>

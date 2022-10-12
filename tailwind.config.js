@@ -13,6 +13,10 @@ module.exports = {
       aspectRatio: {
         "10/5": "10 / 5",
       },
+
+      screens: {
+        xsm: "380px",
+      },
     },
   },
   plugins: [],
