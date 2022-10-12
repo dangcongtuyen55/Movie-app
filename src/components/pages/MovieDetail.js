@@ -30,7 +30,7 @@ const MovieDetail = () => {
           className="w-full h-full bg-cover rounded-xl"
         />
       </div>
-      <h1 className="text-center text-3xl font-bold text-white mb-10 mt-5">
+      <h1 className="text-center xsm:text-3xl text-sm font-bold text-white mb-10 mt-5">
         {title}
       </h1>
       {genres.length > 0 && (
