@@ -36,3 +36,11 @@
     @apply text-primary;
   }
 }
+
+.movie__list-swiper {
+  .swiper-button-next,
+  .swiper-button-prev {
+    font-weight: bold;
+    color: #fff;
+  }
+}

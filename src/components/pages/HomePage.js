@@ -4,21 +4,21 @@ import React from "react";
 const HomePage = () => {
   return (
     <>
-      <section className="movie-layer page-container pb-20 ">
-        <h2 className="capitalize text-white mb-10 text-3xl font-bold ">
+      <section className="pb-20 movie-layer page-container ">
+        <h2 className="mb-10 text-3xl font-bold text-white capitalize ">
           Now playing
         </h2>
         <MovieList />
       </section>
 
-      <section className="movie-layer page-container pb-20">
-        <h2 className="capitalize text-white mb-10 text-3xl font-bold ">
+      <section className="pb-20 movie-layer page-container">
+        <h2 className="mb-10 text-3xl font-bold text-white capitalize ">
           Top rated
         </h2>
         <MovieList type="top_rated" />
       </section>
-      <section className="movie-layer page-container pb-20">
-        <h2 className="capitalize text-white mb-10 text-3xl font-bold">
+      <section className="pb-20 movie-layer page-container">
+        <h2 className="mb-10 text-3xl font-bold text-white capitalize">
           Top treding
         </h2>
         <MovieList type="popular" />
