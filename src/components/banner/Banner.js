@@ -20,7 +20,7 @@ export const Banner = () => {
     if (data && data.results) setMovies(data.results);
   }, [data]);
   return (
-    <section className="banner h-[400px] page-container mb-20">
+    <section className="banner h-[500px] rounded-3xl page-container mb-20">
       <Swiper
         grabCursor={true}
         centeredSlides={true}
@@ -46,13 +46,13 @@ function ItemBanner({ item }) {
   const { id, title, poster_path } = item;
   const navigate = useNavigate();
   return (
-    <div className="relative w-full h-full rounded-lg">
-      <div className="overlay absolute inset-0 bg-gradient-to-t from-[rgba(0,0,0,0.5)] to-[rgba(0,0,0,0.5)] rounded-lg"></div>
+    <div className="relative w-full h-full rounded-3xl">
+      <div className="overlay absolute inset-0 bg-gradient-to-t from-[rgba(0,0,0,0.5)] to-[rgba(0,0,0,0.5)] rounded-3xl"></div>
 
       <img
         src={`https://image.tmdb.org/t/p/original/${poster_path}`}
         alt=""
-        className="object-cover object-top w-full h-full rounded-lg"
+        className="object-cover object-top w-full h-full rounded-3xl"
       />
       <div className="absolute w-full text-white left-5 bottom-5">
         <h2 className="mb-5 text-3xl font-bold">{title}</h2>
@@ -67,8 +67,31 @@ function ItemBanner({ item }) {
             Action
           </span>
         </div>
-        <Button onClick={() => navigate(`/movie/${id}`)} bgColor="primary">
+        <Button
+          onClick={() => navigate(`/movie/${id}`)}
+          bgColor="primary"
+          className={"flex gap-3"}
+        >
           Watch now
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="w-6 h-6"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M15.91 11.672a.375.375 0 010 .656l-5.603 3.113a.375.375 0 01-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112z"
+            />
+          </svg>
         </Button>
       </div>
     </div>

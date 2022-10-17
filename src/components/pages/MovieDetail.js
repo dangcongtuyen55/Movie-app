@@ -102,14 +102,14 @@ function MovieCredits() {
   return (
     <div className="py-4 mt-20 ">
       <h2 className="mb-10 text-2xl text-center">Casts</h2>
-      <div className="grid gap-5 lg:grid-cols-4 sm:grid-cols-2">
+      <div className="grid grid-cols-2 gap-5 lg:grid-cols-4 md:grid-cols-2">
         {cast.slice(0, 4).map((item) => {
           return (
-            <div className="cast-item" key={item.id}>
+            <div className="cast-item " key={item.id}>
               <img
                 src={apiMovie.imgOriginalUrl(item.profile_path)}
                 alt=""
-                className=" w-full h-[350px]   object-cover rounded-lg mb-3"
+                className=" w-[200px] h-[250px] md:w-full md:h-[500px]  object-cover rounded-lg mb-3"
               />
               <h2 className="text-xs font-medium sm:text-xl ">{item.name}</h2>
             </div>
